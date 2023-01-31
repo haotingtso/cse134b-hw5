@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/placeholder.css" type="text/css" />
     <title>Home</title>
+    <style>
+      body {
+        font-family: "Times New Roman" monospace;
+      }
+    </style>
   </head>
   <body>
     <h1>My Portfolio</h1>
@@ -12,24 +18,38 @@
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/project">Project</a></li>
-          <li><a href="/education">Education</a></li>
-          <li><a href="/hobby">Hobby</a></li>
-          <li><a href="/contact">Contact Me</a></li>
+          <li><a href="/project.html">Project</a></li>
+          <li><a href="/education.html">Education</a></li>
+          <li><a href="/hobby.html">Hobby</a></li>
+          <li><a href="/contact.html">Contact Me</a></li>
         </ul>
       </nav>
     </header>
     <main>
       <h2>About Me</h2>
+      <canvas id="myCanvas" width="200" height="100"></canvas>
+      <svg height="100">
+        <polygon points="30,3 12,59.4 57,23.4 3,23.4 48,59.4" />
+        Sorry, your browser does not support inline SVG.
+      </svg>
+      <br />
       <picture>
-        <source srcset="https://thispersondoesnotexist.com/image" />
+        <source srcset="https://thispersondoesnotexist.com/image" width="200" />
         <img src="/me.jpg" alt="Me" />
       </picture>
       <ol>
-        <li><b>Name:</b>Hao-Ting Tso (David)</li>
-        <li><b>Age:</b>20</li>
-        <li><b>School:</b>University of California, San Diego</li>
-        <li><b>Major:</b>Computer Science</li>
+        <li><b>Name:</b> Hao-Ting Tso (David)</li>
+        <li><b>Age:</b> 20</li>
+        <li><b>School:</b> University of California, San Diego</li>
+        <li><b>Major:</b> Computer Science</li>
+        <li>
+          <b>Favorite Song:</b>
+          <br />
+          <audio controls>
+            <source src="/assets/song.mp3" type="audio/mpeg" />
+            Your browser does not support the audio tag
+          </audio>
+        </li>
         <li>
           <b>Favorite Quote:</b>
           <aside>
@@ -41,12 +61,22 @@
             </strong>
           </aside>
         </li>
+        <li>
+          <b>Favorite Page:</b>
+          <br />
+          <iframe src="/hobby.html" title="hobby page"></iframe>
+        </li>
       </ol>
     </main>
     <footer>
       <hr />
       <a href="#">Go to Top</a>
     </footer>
-    <script></script>
+    <script>
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      ctx.font = "30px Arial";
+      ctx.strokeText("Hello There!", 10, 50);
+    </script>
   </body>
 </html>

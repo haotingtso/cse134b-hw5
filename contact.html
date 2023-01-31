@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <h1>My Portfolio</h1>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/project.html">Project</a></li>
+          <li><a href="/education.html">Education</a></li>
+          <li><a href="/hobby.html">Hobby</a></li>
+          <li><a href="/contact.html">Contact Me</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>Contact Me</h2>
+      <form>
+        <fieldset>
+          <legend>Your Information</legend>
+          <label for="name">Full name:</label>
+          <input type="text" id="name" name="name" required /><br /><br />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required /><br /><br />
+          <label for="ice-cream-choice">Your favorite ice creame flavor:</label>
+          <input
+            list="ice-cream-flavors"
+            id="ice-cream-choice"
+            name="ice-cream-choice"
+          /><br /><br />
+
+          <datalist id="ice-cream-flavors">
+            <option value="Chocolate"></option>
+            <option value="Coconut"></option>
+            <option value="Mint"></option>
+            <option value="Strawberry"></option>
+            <option value="Vanilla"></option>
+          </datalist>
+
+          <label for="nba-player"
+            >Choose an NBA player you like the most:</label
+          >
+          <select id="nba-player">
+            <optgroup label="West">
+              <option>Lebron James</option>
+              <option>Stephen Curry</option>
+              <option>Nikola Jokic</option>
+              <option>Luka Doncic</option>
+              <option>Zion Williamson</option>
+            </optgroup>
+            <optgroup label="Sauropods">
+              <option>Giannis Antetokounpo</option>
+              <option>Kyrie Irving</option>
+              <option>Donovan Mitchell</option>
+              <option>Kevin Durant</option>
+              <option>Jayson Tatum</option>
+            </optgroup></select
+          ><br /><br />
+
+          <label for="Message">Message</label><br />
+          <textarea id="Message" name="Message" rows="4" cols="50" required>
+          </textarea>
+
+          <br /><br />
+          <button type="button">submit</button>
+        </fieldset>
+      </form>
+    </main>
+    <footer>
+      <hr />
+      <a href="#">Go to Top</a>
+    </footer>
+    <script></script>
+  </body>
+</html>
