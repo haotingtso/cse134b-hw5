@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
+    <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="/assets/styles/education.css" />
   </head>
   <body>
-    <h1>My Portfolio</h1>
     <header>
+      <h1>My Portfolio</h1>
       <nav>
         <ul>
           <li><a href="/">Home</a></li>
@@ -22,21 +24,40 @@
     <main>
       <h2>Education</h2>
       <section>
-        <div>
-          <img src="/assets/foothill.jpg" alt="Foothill College" />
-          <div>
+        <div id="foothill" class="card">
+          <div class="card-front">
+            <picture>
+              <img
+                src="/assets/schools_logos/foothill.png"
+                alt="Foothill College"
+                width="40px"
+                height="40px"
+              />
+            </picture>
+            <h3>Foothill College</h3>
+          </div>
+          <div class="card-back">
             <h3>Foothill College</h3>
             <p>
               I was studying <i>Computer Science</i> at Foothill College from
-              winter 2020 to spring 2021.
+              winter 2020 to spring 2021
             </p>
           </div>
         </div>
-        <br />
-        <div>
-          <img src="/assets/ucsd.png" alt="UCSD Logo" />
-          <div>
+        <div id="ucsd" class="card">
+          <div class="card-front">
+            <picture>
+              <img
+                src="/assets/schools_logos/ucsd.png"
+                alt="University of California, San Diego"
+                width="40px"
+                height="40px"
+              />
+            </picture>
             <h3>University of California, San Diego</h3>
+          </div>
+          <div class="card-back">
+            <h3>UCSD</h3>
             <p>
               I am currently studying <i>Computer Science</i> at UCSD from fall
               2021, and I expect to graduate in <strong>spring 2024</strong>

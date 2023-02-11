@@ -1,0 +1,65 @@
+section {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.card {
+	width: 15rem;
+	height: 21rem;
+	margin-top: 2rem;
+	border-radius: 2rem;
+	border-bottom: 5px solid var(--color, transparent);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	transition: all 150ms;
+	transform: rotateY(var(--rotate-y, 0));
+	transform-style: preserve-3d;
+}
+
+#foothill {
+	--color: #C00000;
+}
+
+#ucsd {
+	--color: #000CA4
+}
+
+.card:hover {
+	--rotate-y: 180deg;
+}
+
+.card-front, .card-back {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem;
+	backface-visibility: hidden;
+}
+
+.card-front {
+	display: flex;
+	align-items: center;
+	color: var(--color)
+}
+
+.card-front img {
+	position: absolute;
+	top: 2rem;
+	left: 2rem;
+}
+
+.card-front h3 {
+	margin: auto;
+	text-align: center;
+}
+
+.card-back {
+	transform: rotateY(180deg);
+}
+
+.card-back p {
+	line-height: 1.5rem;
+}
