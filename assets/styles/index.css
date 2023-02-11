@@ -1,6 +1,5 @@
 .persona {
-	--overlap: 3rem;
-	padding-left: var(--overlap);
+	--overlap: 1.5rem;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -9,12 +8,13 @@
 }
 
 .persona:hover {
-	--overlap: 1.5rem;
+	--overlap: 0.75rem;
 }
 
 .persona picture {
 	position: relative;
 	width: 40%;
+	transform: translateX(var(--overlap));
 	transition: all 0.2s;
 	z-index: 1;
 }

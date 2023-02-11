@@ -8,24 +8,23 @@
 - [x] CSS Variables
 - [x] Custom Fonts
 - [x] Relative Units
-- [ ] CSS Animation, Transitions, and Transform
+- [x] CSS Animation, Transitions, and Transform
 - [ ] Media Queries
 
 ### Part II
 
-- [ ] Image Content Type
+- [x] Image Content Type
 - [ ] Image Optimization
-- [ ] Accessibility like alternative text
+- [x] Accessibility like alternative text
 - [ ] Foreground or background
-- [ ] Appropriate Size
+- [x] Appropriate Size
 
 ### Part III
 
 - [ ] Different sizes of screens
-- [ ] Hamburger Menu
 - [ ] Touch Awareness
 
 ### Part IV
 
-- [ ] Aesthetics
+- [x] Aesthetics
 - [ ] Usability
