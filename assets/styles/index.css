@@ -1,27 +1,34 @@
 .persona {
-	--overlap: 2rem;
+	--overlap: 3rem;
 	padding-left: var(--overlap);
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	transition: all 0.2s;
+}
+
+.persona:hover {
+	--overlap: 1.5rem;
 }
 
 .persona picture {
 	position: relative;
 	width: 40%;
+	transition: all 0.2s;
 	z-index: 1;
 }
 
 .description {
 	margin: 0;
 	padding: 3rem 5rem;
-	width: 70%;
+	width: 80%;
 	display: flex;
 	flex-direction: column;
 	color: white;
 	background-color: black;
 	transform: translateX(calc(-1 * var(--overlap)));
+	transition: all 0.2s;
 	z-index: 0;
 }
 
@@ -32,4 +39,29 @@
 
 .description b {
 	font-size: 1.5rem;
+}
+
+.corner {
+	position: absolute;
+	width: 5rem;
+	height: 5rem;
+	border: 16px none black;
+	opacity: 0;
+	transition: inherit;
+}
+
+.persona:hover .corner {
+	opacity: 1;
+}
+
+.persona:hover #left-top-corner {
+	top: -2rem;
+	left: -2rem;
+	border-style: solid none none solid;
+}
+
+.persona:hover #right-bottom-corner {
+	bottom: -2rem;
+	right: -2rem;
+	border-style: none solid solid none;
 }
