@@ -4,32 +4,6 @@
 	box-sizing: border-box;
 }
 
-body {
-	min-height: 100vh;
-	width: 100%;
-	max-width: 64rem;
-	margin: 0 auto;
-	padding: 2rem;
-	display: grid;
-	grid-template-rows: [header-start] minmax(10rem, 10%) [main-start] auto [main-end] 2.5% [footer-end];
-	font-family: "Quicksand", sans-serif;
-}
-
-header {
-	grid-row-start: header-start;
-	grid-row-end: main-start;
-}
-
-main {
-	grid-row-start: main-start;
-	grid-row-end: main-end;
-}
-
-footer {
-	grid-row-start: main-end;
-	grid-row-end: footer-end;
-}
-
 li {
 	list-style: none;
 }
@@ -43,8 +17,57 @@ ul, ol {
 	padding: 0;
 }
 
+hr {
+	margin: auto 0;
+}
+
+body {
+	min-height: 100vh;
+	width: 100%;
+	max-width: 64rem;
+	margin: 0 auto;
+	padding: 2rem;
+	display: grid;
+	grid-template-rows: [header-start] minmax(10rem, 10%) [main-start] auto [main-end] minmax(5rem, 2.5%) [footer-end];
+	font-family: "Quicksand", sans-serif;
+}
+
+header {
+	display: flex;
+	flex-direction: column;
+	grid-row-start: header-start;
+	grid-row-end: main-start;
+}
+
+main {
+	grid-row-start: main-start;
+	grid-row-end: main-end;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	grid-row-start: main-end;
+	grid-row-end: footer-end;
+}
+
+h2 {
+	margin-bottom: 3rem;
+}
+
 nav ul {
 	display: flex;
 	flex-direction: row;
-	gap: 1.5rem;
+	gap: 1rem;
+}
+
+header a, footer a {
+	padding: 1rem;
+	border-radius: 10px;
+	transition: all 0.25s;
+}
+
+header a:hover, footer a:hover {
+	color: white;
+	background-color: black;
 }

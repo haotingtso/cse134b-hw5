@@ -28,6 +28,10 @@ section {
 }
 
 .card:hover {
+	cursor: pointer;
+}
+
+.card:active {
 	--rotate-y: 180deg;
 }
 

@@ -1,0 +1,35 @@
+.persona {
+	--overlap: 2rem;
+	padding-left: var(--overlap);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.persona picture {
+	position: relative;
+	width: 40%;
+	z-index: 1;
+}
+
+.description {
+	margin: 0;
+	padding: 3rem 5rem;
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+	color: white;
+	background-color: black;
+	transform: translateX(calc(-1 * var(--overlap)));
+	z-index: 0;
+}
+
+.description li {
+	padding: 2rem 0;
+	border-bottom: 1px solid white;
+}
+
+.description b {
+	font-size: 1.5rem;
+}

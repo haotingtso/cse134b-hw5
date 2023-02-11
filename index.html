@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/placeholder.css" type="text/css" />
     <title>Home</title>
     <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="/assets/styles/index.css" />
     <style></style>
   </head>
   <body>
@@ -24,47 +25,45 @@
     </header>
     <main>
       <h2>About Me</h2>
-      <canvas id="myCanvas" width="200" height="100"></canvas>
-      <svg height="100">
-        <polygon points="30,3 12,59.4 57,23.4 3,23.4 48,59.4" />
-      </svg>
-      <br />
-      <picture>
-        <source srcset="https://thispersondoesnotexist.com/image" width="200" />
-        <img src="/me.jpg" alt="Me" />
-      </picture>
-      <ol>
-        <li><b>Name:</b> Hao-Ting Tso (David)</li>
-        <li><b>Age:</b> 20</li>
-        <li><b>School:</b> University of California, San Diego</li>
-        <li><b>Major:</b> Computer Science</li>
-        <li>
-          <b>Favorite Quote:</b>
-          <aside>
-            <pre>
-"Once you know what failures feel like, determination chases success"- Kobe Bryant
-							</pre
-            >
-          </aside>
-        </li>
-        <li>
-          <b>Favorite Song:</b>
-          <br />
-          <audio controls>
-            <source src="/assets/song.mp3" type="audio/mpeg" />
-            Your browser does not support the audio tag
-          </audio>
-        </li>
-        <li>
-          <b>Favorite Page:</b>
-          <br />
-          <iframe src="/hobby.html" title="hobby page"></iframe>
-        </li>
-      </ol>
+      <div class="persona">
+        <picture>
+          <source
+            type="image/jpeg"
+            srcset="/assets/portrait.jpg"
+            width="100%"
+          />
+          <img src="/fallback.jpg" alt="Me" />
+        </picture>
+        <ol class="description">
+          <li><b>Name</b> &emsp; Hao-Ting Tso (David)</li>
+          <li><b>Age</b> &emsp; 20</li>
+          <li><b>School</b> &emsp; University of California, San Diego</li>
+          <li><b>Major</b> &emsp; Computer Science</li>
+          <li>
+            <b>Favorite Quote</b>
+            <p>
+              "Once you know what failures feel like, determination chases
+              success" - Kobe Bryant
+            </p>
+          </li>
+          <!-- <li>
+						<b>Favorite Song:</b>
+						<br />
+						<audio controls>
+							<source src="/assets/song.mp3" type="audio/mpeg" />
+							Your browser does not support the audio tag
+						</audio>
+					</li> -->
+        </ol>
+      </div>
     </main>
     <footer>
       <hr />
-      <a href="#">Go to Top</a>
+      <ul>
+        <li>
+          <a href="#">Go to Top</a>
+        </li>
+      </ul>
     </footer>
     <script>
       var c = document.getElementById("myCanvas");
