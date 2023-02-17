@@ -8,7 +8,7 @@
 - [x] CSS Variables
 - [x] Custom Fonts
 - [x] Relative Units
-- [ ] CSS Animation, Transitions, and Transform
+- [x] CSS Animation, Transitions, and Transform
 - [x] Media Queries
 
 ### Part II
