@@ -4,77 +4,81 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hao-Ting Tso's Portfolio" />
     <title>Home</title>
     <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="/assets/styles/contact.css" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
       <h1>My Portfolio</h1>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/project.html">Project</a></li>
-          <li><a href="/education.html">Education</a></li>
-          <li><a href="/hobby.html">Hobby</a></li>
-          <li><a href="/contact.html">Contact Me</a></li>
-        </ul>
-      </nav>
+      <label>
+        <i id="hamburger" class="fa-solid fa-bars fa-lg"></i>
+        <input type="checkbox" />
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/project.html">Project</a></li>
+            <li><a href="/education.html">Education</a></li>
+            <li><a href="/contact.html">Contact Me</a></li>
+          </ul>
+        </nav>
+      </label>
     </header>
     <main>
       <h2>Contact Me</h2>
-      <form>
-        <fieldset>
-          <legend>Your Information</legend>
-          <label for="name">Full name:</label>
-          <input type="text" id="name" name="name" required /><br /><br />
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required /><br /><br />
-          <label for="ice-cream-choice">Your favorite ice creame flavor:</label>
-          <input
-            list="ice-cream-flavors"
-            id="ice-cream-choice"
-            name="ice-cream-choice"
-          /><br /><br />
-
-          <datalist id="ice-cream-flavors">
-            <option value="Chocolate"></option>
-            <option value="Coconut"></option>
-            <option value="Mint"></option>
-            <option value="Strawberry"></option>
-            <option value="Vanilla"></option>
-          </datalist>
-
-          <label for="nba-player"
-            >Choose an NBA player you like the most:</label
-          >
-          <select id="nba-player">
-            <optgroup label="West">
-              <option>Lebron James</option>
-              <option>Stephen Curry</option>
-              <option>Nikola Jokic</option>
-              <option>Luka Doncic</option>
-              <option>Zion Williamson</option>
-            </optgroup>
-            <optgroup label="Sauropods">
-              <option>Giannis Antetokounpo</option>
-              <option>Kyrie Irving</option>
-              <option>Donovan Mitchell</option>
-              <option>Kevin Durant</option>
-              <option>Jayson Tatum</option>
-            </optgroup></select
-          ><br /><br />
-
-          <label for="Message">Message</label><br />
-          <textarea id="Message" name="Message" rows="4" cols="50" required>
-          </textarea>
-
-          <br /><br />
-          <button type="button">submit</button>
-        </fieldset>
+      <form action="/" method="post">
+        <input
+          class="name"
+          type="text"
+          id="first-name"
+          name="first-name"
+          placeholder="First Name"
+          required
+        />
+        <input
+          class="name"
+          type="text"
+          id="last-name"
+          name="last-name"
+          placeholder="Last Name"
+          required
+        />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+        <textarea
+          id="Message"
+          name="Message"
+          rows="4"
+          cols="50"
+          placeholder="Your Message"
+          required
+        ></textarea>
+        <button>submit</button>
       </form>
     </main>
     <footer>
-      <hr />
       <ul>
         <li>
           <a href="#">Go to Top</a>

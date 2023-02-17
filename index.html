@@ -4,24 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/placeholder.css" type="text/css" />
     <title>Home</title>
+    <meta name="description" content="Hao-Ting Tso's Portfolio" />
     <link rel="stylesheet" href="/assets/styles/style.css" />
     <link rel="stylesheet" href="/assets/styles/index.css" />
-    <style></style>
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
       <h1>My Portfolio</h1>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/project.html">Project</a></li>
-          <li><a href="/education.html">Education</a></li>
-          <li><a href="/hobby.html">Hobby</a></li>
-          <li><a href="/contact.html">Contact Me</a></li>
-        </ul>
-      </nav>
+      <label>
+        <i id="hamburger" class="fa-solid fa-bars fa-lg"></i>
+        <input type="checkbox" />
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/project.html">Project</a></li>
+            <li><a href="/education.html">Education</a></li>
+            <li><a href="/contact.html">Contact Me</a></li>
+          </ul>
+        </nav>
+      </label>
     </header>
     <main>
       <h2>About Me</h2>
@@ -31,12 +49,14 @@
           <source
             type="image/jpeg"
             srcset="/assets/portrait.jpg"
-            width="100%"
+            media="(min-width: 1024px)"
+            width="350px"
+            height="478px"
           />
-          <img src="/fallback.jpg" alt="Me" />
+          <img src="/fallback.jpg" alt="Me" width="350px" height="478px" />
         </picture>
         <ol class="description">
-          <div id="right-bottom-corner" class="corner"></div>
+          <li><div id="right-bottom-corner" class="corner"></div></li>
           <li><b>Name</b> &emsp; Hao-Ting Tso (David)</li>
           <li><b>Age</b> &emsp; 20</li>
           <li><b>School</b> &emsp; University of California, San Diego</li>
@@ -52,18 +72,11 @@
       </div>
     </main>
     <footer>
-      <hr />
       <ul>
         <li>
           <a href="#">Go to Top</a>
         </li>
       </ul>
     </footer>
-    <script>
-      var c = document.getElementById("myCanvas");
-      var ctx = c.getContext("2d");
-      ctx.font = "30px Arial";
-      ctx.strokeText("Hello There!", 10, 50);
-    </script>
   </body>
 </html>

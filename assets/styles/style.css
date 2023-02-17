@@ -14,60 +14,125 @@ a {
 }
 
 ul, ol {
+	margin: 0;
 	padding: 0;
 }
 
-hr {
-	margin: auto 0;
-}
-
 body {
-	min-height: 100vh;
-	width: 100%;
-	max-width: 64rem;
 	margin: 0 auto;
-	padding: 2rem;
 	display: grid;
-	grid-template-rows: [header-start] minmax(10rem, 10%) [main-start] auto [main-end] minmax(5rem, 2.5%) [footer-end];
+	grid-template-rows: [top] 2rem [header-start] auto [header-end] 2rem [main-start] auto [main-end] 2rem [footer-start] auto [footer-end] 0 [bottom];
 	font-family: "Quicksand", sans-serif;
+	background-color: white;
 }
 
 header {
+	width: 90%;
+	max-width: 64rem;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
 	grid-row-start: header-start;
-	grid-row-end: main-start;
+	grid-row-end: header-end;
 }
 
 main {
+	width: 90%;
+	margin: 0 auto;
+	max-width: 64rem;
 	grid-row-start: main-start;
 	grid-row-end: main-end;
 }
 
 footer {
-	display: flex;
-	flex-direction: column;
-	grid-row-start: main-end;
+	width: 90%;
+	max-width: 64rem;
+	margin: auto auto 0 auto;
+	border-top: 1px solid lightgray;
+	padding: 1rem 0;
+	grid-row-start: footer-start;
 	grid-row-end: footer-end;
 }
 
-h2 {
-	margin-bottom: 3rem;
+nav {
+	display: flex;
 }
 
-nav ul {
+nav ul, footer ul {
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
 }
 
-header a, footer a {
+nav ul li, footer ul li {
+	display: flex;
+}
+
+header a {
 	padding: 1rem;
 	border-radius: 10px;
 	transition: all 0.25s;
 }
 
-header a:hover, footer a:hover {
+header a:hover {
 	color: white;
 	background-color: black;
+}
+
+footer a:hover {
+	color: rgb(100, 100, 100)
+}
+
+#hamburger, input[type=checkbox] {
+	display: none;
+}
+
+@media (max-width: 480px) {
+
+	nav {
+		width: 50%;
+		height: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		border-radius: 0 1rem 1rem 0;
+		padding: 3rem 1rem;
+		background-color: black;
+		transform: translateX(-100%);
+		transition: all ease-in 0.5s;
+		z-index: 10;
+	}
+
+	input[type=checkbox] {
+		display: none;
+	}
+
+	#hamburger {
+		display: inline-block;
+		padding: 3px;
+	}
+
+	#hamburger, input[type=checkbox] {
+		position: absolute;
+		top: 4.5rem;
+		right: 4rem;
+	}
+
+	input[type=checkbox]:checked+nav {
+		transform: translateX(0);
+	}
+
+	nav ul {
+		flex-direction: column;
+	}
+
+	nav ul li a {
+		width: 100%;
+		color: white;
+	}
+
+	nav ul li a:active {
+		background-color: white;
+		color: black;
+	}
 }
