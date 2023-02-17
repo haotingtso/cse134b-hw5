@@ -49,3 +49,9 @@ button:hover {
 	color: black;
 	background-color: white;
 }
+
+@media (max-width: 768px) {
+	.name {
+		width: 100%;
+	}
+}
