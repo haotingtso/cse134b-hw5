@@ -32,7 +32,7 @@ input {
 	gap: 0.5rem;
 }
 
-.control {
+.field {
 	display: flex;
 	flex-direction: column;
 }

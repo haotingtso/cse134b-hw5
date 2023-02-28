@@ -17,29 +17,102 @@
     <br />
     <output></output>
 
-    <dialog></dialog>
-
     <template id="alert-template">
-      <button>Ok</button>
+      <dialog>
+        <p id="alert-message"></p>
+        <button>Ok</button>
+      </dialog>
     </template>
 
     <template id="confirm-template">
-      <div class="buttons">
-        <button>Cancel</button>
-        <button>Ok</button>
-      </div>
+      <dialog>
+        <p id="confirm-message"></p>
+        <div class="buttons">
+          <button>Cancel</button>
+          <button>Ok</button>
+        </div>
+      </dialog>
     </template>
 
     <template id="prompt-template">
-      <div class="control">
-        <input type="text" id="prompt" name="prompt" />
-      </div>
-      <div class="buttons">
-        <button>Cancel</button>
-        <button>Ok</button>
-      </div>
+      <dialog>
+        <div class="field">
+          <label for="prompt"></label>
+          <input type="text" id="prompt" name="prompt" />
+        </div>
+        <div class="buttons">
+          <button>Cancel</button>
+          <button>Ok</button>
+        </div>
+      </dialog>
     </template>
+    <script type="module">
+      import {
+        customAlert,
+        customConfirm,
+        customPrompt,
+      } from "./customdialog.js";
 
-    <template></template>
+      let alert_btn = document.getElementById("alert-btn");
+      let confirm_btn = document.getElementById("confirm-btn");
+      let prompt_btn = document.getElementById("prompt-btn");
+      let output = document.querySelector("output");
+
+      function main() {
+        addEventListeners();
+        modifyEventListeners();
+      }
+
+      function modifyEventListeners() {
+        window.alert = customAlert;
+        window.confirm = customConfirm;
+        window.prompt = customPrompt;
+      }
+
+      function addEventListeners() {
+        alert_btn.addEventListener("click", () => {
+          setOutput("");
+          setTimeout(() => {
+            window.alert("Alert pressed!");
+          }, 0);
+        });
+
+        confirm_btn.addEventListener("click", () => {
+          setOutput("");
+          const onclick = isOk => setOutput(`Confirm result : ${isOk}`);
+          setTimeout(() => {
+            window.confirm("Can you confirm this?", onclick);
+          }, 0);
+        });
+
+        prompt_btn.addEventListener("click", () => {
+          setOutput("");
+
+          const onclick = message => {
+            message = cleanUserInput(message);
+            setOutput(
+              message
+                ? `Prompt result : ${message}`
+                : "User didn't enter anything"
+            );
+          };
+
+          setTimeout(() => {
+            window.prompt("What is your name?", onclick);
+          }, 0);
+        });
+      }
+
+      function cleanUserInput(userInput) {
+        return DOMPurify.sanitize(userInput);
+      }
+
+      function setOutput(newContent) {
+        output.innerHTML = newContent;
+        output.style.border = newContent ? "10px double black" : "";
+      }
+
+      main();
+    </script>
   </body>
 </html>
