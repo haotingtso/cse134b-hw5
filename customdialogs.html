@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Dialogs</title>
+    <script src="/node_modules/dompurify/dist/purify.js"></script>
+    <script src="/customdialog.js" type="module"></script>
+    <link rel="stylesheet" href="/assets/styles/dialogs.css" />
+  </head>
+  <body>
+    <button id="alert-btn">Alert</button>
+    <button id="confirm-btn">Confirm</button>
+    <button id="prompt-btn">Prompt</button>
+    <br />
+    <br />
+    <output></output>
+
+    <dialog></dialog>
+
+    <template id="alert-template">
+      <button>Ok</button>
+    </template>
+
+    <template id="confirm-template">
+      <div class="buttons">
+        <button>Cancel</button>
+        <button>Ok</button>
+      </div>
+    </template>
+
+    <template id="prompt-template">
+      <div class="control">
+        <input type="text" id="prompt" name="prompt" />
+      </div>
+      <div class="buttons">
+        <button>Cancel</button>
+        <button>Ok</button>
+      </div>
+    </template>
+
+    <template></template>
+  </body>
+</html>

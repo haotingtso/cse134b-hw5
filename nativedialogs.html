@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Dialogs?</title>
+    <script src="/node_modules/dompurify/dist/purify.js"></script>
+    <link rel="stylesheet" href="/assets/styles/dialogs.css" />
+  </head>
+  <body>
+    <h1>Simple Dialogs?</h1>
+    <button id="alert-btn">Alert</button>
+    <button id="confirm-btn">Confirm</button>
+    <button id="prompt-btn">Prompt</button>
+    <button id="safer-prompt-btn">Safer Prompt</button>
+    <hr />
+    <output></output>
+
+    <script>
+      let alert_btn = document.getElementById("alert-btn");
+      let confirm_btn = document.getElementById("confirm-btn");
+      let prompt_btn = document.getElementById("prompt-btn");
+      let safer_prompt_btn = document.getElementById("safer-prompt-btn");
+      let output = document.querySelector("output");
+
+      alert_btn.addEventListener("click", () => {
+        setOutput("");
+        setTimeout(() => {
+          window.alert("Alert pressed!");
+        }, 0);
+      });
+
+      confirm_btn.addEventListener("click", () => {
+        setOutput("");
+        setTimeout(() => {
+          let value = window.confirm("Can you confirm this?");
+          setOutput(`Confirm result : ${value}`);
+        }, 0);
+      });
+
+      prompt_btn.addEventListener("click", () => {
+        setOutput("");
+        setTimeout(() => {
+          let value = window.prompt("What is your name?");
+          setOutput(
+            value ? `Prompt result : ${value}` : "User didn't enter anything"
+          );
+        }, 0);
+      });
+
+      safer_prompt_btn.addEventListener("click", () => {
+        setOutput("");
+        setTimeout(() => {
+          let value = cleanUserInput(window.prompt("What is your name?"));
+          setOutput(
+            value ? `Prompt result : ${value}` : "User didn't enter anything"
+          );
+        }, 0);
+      });
+
+      function cleanUserInput(userInput) {
+        return DOMPurify.sanitize(userInput);
+      }
+
+      function setOutput(newContent) {
+        output.innerHTML = newContent;
+        output.style.border = newContent ? "10px double black" : "";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	padding-top: 2rem;
+}
+
+output {
+	padding: 1rem;
+	display: inline-block;
+	font-size: 1.5rem;
+}
+
+dialog[open] {
+	padding: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+input {
+	min-width: 50ch;
+}
+
+.buttons {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+.control {
+	display: flex;
+	flex-direction: column;
+}
