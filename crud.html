@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post CRUD</title>
+    <script src="/blog.js" type="module"></script>
+    <script src="/customdialog.js" type="module"></script>
+    <link rel="stylesheet" href="/assets/styles/dialogs.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      time {
+        display: inline;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 30rem;
+      }
+      li {
+        position: relative;
+        list-style-type: none;
+      }
+      .buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Posts</h1>
+    <main>
+      <ul></ul>
+      <button type="button" id="add-btn">Add Post</button>
+    </main>
+
+    <template id="alert-template">
+      <dialog>
+        <p id="alert-message"></p>
+        <button>Ok</button>
+      </dialog>
+    </template>
+
+    <template id="confirm-template">
+      <dialog>
+        <p id="confirm-message"></p>
+        <div class="buttons">
+          <button>Cancel</button>
+          <button>Ok</button>
+        </div>
+      </dialog>
+    </template>
+
+    <template id="post-prompt-template">
+      <dialog>
+        <form>
+          <div class="form-field">
+            <label for="post-title">Title:</label>
+            <input type="text" id="post-title" name="post-title" value="" />
+          </div>
+          <div class="form-field">
+            <label for="post-date">Date:</label>
+            <input type="date" id="post-date" name="post-date" value="" />
+          </div>
+          <div class="form-field">
+            <label for="post-summary"></label>
+            <input type="text" id="post-summary" name="post-summary" value="" />
+          </div>
+          <div class="form-field">
+            <button type="button" onclick="">Cancel</button>
+            <button type="button" onclick="">Save</button>
+          </div>
+        </form>
+      </dialog>
+    </template>
+
+    <template>
+      <li>
+        <details>
+          <summary>
+            <span class="post-title"></span>
+            <time datetime=""></time>
+          </summary>
+          <p class="post-summary"></p>
+        </details>
+        <div class="buttons">
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </div>
+      </li>
+    </template>
+
+    <script type="module">
+      import {
+        customAlert,
+        customConfirm,
+        customPrompt,
+        showPostPrompt,
+      } from "./customdialog.js";
+
+      let add_btn = document.getElementById("add-btn");
+
+      function main() {
+        addEventListeners();
+        modifyEventListeners();
+      }
+
+      function modifyEventListeners() {
+        window.alert = customAlert;
+        window.confirm = customConfirm;
+        window.prompt = customPrompt;
+      }
+
+      function addEventListeners() {
+        add_btn.addEventListener("click", () => showPostPrompt());
+      }
+
+      main();
+    </script>
+  </body>
+</html>
