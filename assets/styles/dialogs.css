@@ -24,7 +24,7 @@ input {
 	min-width: 50ch;
 }
 
-.buttons {
+dialog .buttons {
 	width: 100%;
 	display: flex;
 	flex-direction: row;

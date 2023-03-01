@@ -25,7 +25,7 @@
         position: relative;
         list-style-type: none;
       }
-      .buttons {
+      li .buttons {
         position: absolute;
         top: 0;
         right: 0;
@@ -61,15 +61,33 @@
         <form>
           <div class="form-field">
             <label for="post-title">Title:</label>
-            <input type="text" id="post-title" name="post-title" value="" />
+            <input
+              type="text"
+              id="post-title"
+              name="post-title"
+              value=""
+              required
+            />
           </div>
           <div class="form-field">
             <label for="post-date">Date:</label>
-            <input type="date" id="post-date" name="post-date" value="" />
+            <input
+              type="date"
+              id="post-date"
+              name="post-date"
+              value=""
+              required
+            />
           </div>
           <div class="form-field">
             <label for="post-summary"></label>
-            <input type="text" id="post-summary" name="post-summary" value="" />
+            <input
+              type="text"
+              id="post-summary"
+              name="post-summary"
+              value=""
+              required
+            />
           </div>
           <div class="form-field">
             <button type="button" onclick="">Cancel</button>
@@ -77,22 +95,6 @@
           </div>
         </form>
       </dialog>
-    </template>
-
-    <template>
-      <li>
-        <details>
-          <summary>
-            <span class="post-title"></span>
-            <time datetime=""></time>
-          </summary>
-          <p class="post-summary"></p>
-        </details>
-        <div class="buttons">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </div>
-      </li>
     </template>
 
     <script type="module">
@@ -103,21 +105,79 @@
         showPostPrompt,
       } from "./customdialog.js";
 
+      import posts, { addPost, editPost, deletePost } from "./blog.js";
+
       let add_btn = document.getElementById("add-btn");
+      let posts_list = document.querySelector("ul");
 
       function main() {
         addEventListeners();
-        modifyEventListeners();
-      }
-
-      function modifyEventListeners() {
-        window.alert = customAlert;
-        window.confirm = customConfirm;
-        window.prompt = customPrompt;
       }
 
       function addEventListeners() {
-        add_btn.addEventListener("click", () => showPostPrompt());
+        add_btn.addEventListener("click", () =>
+          showPostPrompt({ onSave: addPostHandler })
+        );
+      }
+
+      function addPostHandler(new_post) {
+        addPost(new_post);
+        renderPosts(posts);
+      }
+
+      function editPostHandler(index, new_post) {
+        editPost(index, new_post);
+        renderPosts(posts);
+      }
+
+      function deletePostHandler(index) {
+        customConfirm("Delete post?", isOk => {
+          if (isOk) {
+            deletePost(index);
+            renderPosts(posts);
+          }
+        });
+      }
+
+      function renderPosts(posts) {
+        posts_list.innerHTML = "";
+        for (let post of posts) {
+          posts_list.innerHTML += listItemGenerator(post);
+        }
+
+        const edit_btns = document.querySelectorAll(".edit-btn");
+        const delete_btns = document.querySelectorAll(".delete-btn");
+
+        for (let [index, btn] of edit_btns.entries()) {
+          btn.addEventListener("click", () => {
+            showPostPrompt({
+              post: posts[index],
+              onSave: new_post => editPostHandler(index, new_post),
+            });
+          });
+        }
+
+        for (let [index, btn] of delete_btns.entries()) {
+          btn.addEventListener("click", () => deletePostHandler(index));
+        }
+      }
+
+      function listItemGenerator({ title, date, summary }) {
+        return `
+             <li>
+               <details>
+                 <summary>
+                   <span class="post-title">${title}</span>
+                   <time datetime="${date}">${date}</time>
+                 </summary>
+                 <p class="post-summary">${summary}</p>
+               </details>
+               <div class="buttons">
+                 <button type="button" class="edit-btn" onclick="">Edit</button>
+                 <button type="button" class="delete-btn">Delete</button>
+               </div>
+             </li>
+         `;
       }
 
       main();

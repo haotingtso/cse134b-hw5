@@ -63,7 +63,10 @@ export const customPrompt = (message, onclick) => {
   openDialog(dialog);
 };
 
-export function showPostPrompt(title = "", date = "", summary = "", onclick) {
+export function showPostPrompt({
+  post = { title: "", date: "", summary: "" },
+  onSave = closeDialog,
+}) {
   // create dialog fragment
   let template = document.getElementById("post-prompt-template");
   let dialog = template.content.cloneNode(true);
@@ -75,17 +78,17 @@ export function showPostPrompt(title = "", date = "", summary = "", onclick) {
   let [cancel, save] = dialog.querySelectorAll("button");
 
   // modify content and add event listener
+  let { title, date, summary } = post;
   title_input.value = title;
   date_input.value = date;
   summary_input.value = summary;
 
   cancel.addEventListener("click", () => {
-    onclick(false);
     closeDialog();
   });
 
   save.addEventListener("click", () => {
-    onclick(true, {
+    onSave({
       title: title_input.value,
       date: date_input.value,
       summary: summary_input.value,
@@ -96,12 +99,12 @@ export function showPostPrompt(title = "", date = "", summary = "", onclick) {
   openDialog(dialog);
 }
 
-export function openDialog(dialog) {
+function openDialog(dialog) {
   document.body.appendChild(dialog);
   document.querySelector("dialog").showModal();
 }
 
-export function closeDialog() {
+function closeDialog() {
   let dialog = document.querySelector("dialog");
   if (dialog) {
     document.body.removeChild(dialog);
