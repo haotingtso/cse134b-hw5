@@ -7,6 +7,7 @@
     <title>Post CRUD</title>
     <script src="/blog.js" type="module"></script>
     <script src="/customdialog.js" type="module"></script>
+    <script src="/node_modules/dompurify/dist/purify.js"></script>
     <link rel="stylesheet" href="/assets/styles/dialogs.css" />
     <style>
       * {
@@ -112,6 +113,7 @@
 
       function main() {
         addEventListeners();
+        renderPosts(posts);
       }
 
       function addEventListeners() {
@@ -121,12 +123,12 @@
       }
 
       function addPostHandler(new_post) {
-        addPost(new_post);
+        addPost(cleanPost(new_post));
         renderPosts(posts);
       }
 
       function editPostHandler(index, new_post) {
-        editPost(index, new_post);
+        editPost(index, cleanPost(new_post));
         renderPosts(posts);
       }
 
@@ -142,7 +144,7 @@
       function renderPosts(posts) {
         posts_list.innerHTML = "";
         for (let post of posts) {
-          posts_list.innerHTML += listItemGenerator(post);
+          posts_list.innerHTML += postMarkupGenerator(post);
         }
 
         const edit_btns = document.querySelectorAll(".edit-btn");
@@ -162,7 +164,7 @@
         }
       }
 
-      function listItemGenerator({ title, date, summary }) {
+      function postMarkupGenerator({ title, date, summary }) {
         return `
              <li>
                <details>
@@ -173,11 +175,18 @@
                  <p class="post-summary">${summary}</p>
                </details>
                <div class="buttons">
-                 <button type="button" class="edit-btn" onclick="">Edit</button>
+                 <button type="button" class="edit-btn">Edit</button>
                  <button type="button" class="delete-btn">Delete</button>
                </div>
              </li>
          `;
+      }
+
+      function cleanPost(post) {
+        for (let [key, value] of Object.entries(post)) {
+          post[key] = DOMPurify.sanitize(value);
+        }
+        return post;
       }
 
       main();
