@@ -1,0 +1,63 @@
+.posts {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.post-title, .post-date {
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+}
+
+.post-title {
+	margin-right: 0.5rem;
+	font-size: 1.1rem;
+}
+
+.post-date {
+	color: grey;
+	font-size: 0.8rem;
+}
+
+.post {
+	padding: 2rem;
+	border-radius: 8px;
+	background-color: var(--main);
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	transition: all 0.2s;
+}
+
+.post:hover {
+	transform: translateY(-8px);
+}
+
+.post:has(summary:hover) {
+	cursor: pointer;
+}
+
+.post summary {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+}
+
+.post summary .buttons {
+	margin-left: auto;
+	display: flex;
+	gap: 0.5rem;
+}
+
+.edit-btn {
+	--color: white;
+	--bg-color: #f77f00;
+}
+
+.delete-btn {
+	--color: white;
+	--bg-color: red;
+}
+
+.post-summary {
+	margin-top: 1rem;
+}
