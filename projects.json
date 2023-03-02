@@ -1,0 +1,12 @@
+[
+  {
+    "name": "TODO List",
+    "date": "2022-04-02",
+    "description": "This is a simple web application written in <code>html</code>, <code>css</code>, <code>javascript</code> to <span> show a list of todo items</span> for me personally, so that <em>I can keep track of what I am supposed to do every day</em>"
+  },
+  {
+    "name": "Cards Rewards Organizer",
+    "date": "2022-04-02",
+    "description": "This is a simple program to <span>organize cards rewards</span> for myself, so that <em>I know what card I should use at different places</em>"
+  }
+]

@@ -1,0 +1,54 @@
+.projects {
+	margin-top: 2rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.project-title, .project-date {
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+}
+
+.project-title {
+	margin-right: 0.5rem;
+	font-size: 1.1rem;
+}
+
+.project-date {
+	color: rgb(200, 200, 200);
+	font-size: 0.8rem;
+}
+
+.project {
+	padding: 2rem;
+	border-radius: 8px;
+	color: white;
+	background-color: black;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	transition: all 0.2s;
+}
+
+.project:hover {
+	transform: translateY(-8px);
+}
+
+.project:has(summary:hover) {
+	cursor: pointer;
+}
+
+.project summary {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+}
+
+.delete-btn {
+	--color: white;
+	--bg-color: red;
+}
+
+.project-summary {
+	margin-top: 1rem;
+}

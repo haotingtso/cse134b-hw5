@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Hao-Ting Tso's Portfolio" />
     <title>Home</title>
+    <link rel="stylesheet" href="/assets/styles/project.css" />
     <link rel="stylesheet" href="/assets/styles/style.css" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -42,28 +43,7 @@
     <main>
       <h2>Project</h2>
       <section>
-        <template>
-          <h3>project name</h3>
-          <p>description</p>
-        </template>
-        <div>
-          <h3>TODO List</h3>
-          <p>
-            This is a simple web application written in <code>html</code>,
-            <code>css</code>, <code>javascript</code> to
-            <span> show a list of todo items</span> for me personally, so that
-            <em>I can keep track of what I am supposed to do every day</em>
-          </p>
-        </div>
-        <br />
-        <div>
-          <h3>Cards Rewards Organizer</h3>
-          <p>
-            This is a simple program to <span>organize cards rewards</span>
-            for myself, so that
-            <em>I know what card I should use at different places</em>
-          </p>
-        </div>
+        <ul class="projects"></ul>
       </section>
     </main>
     <footer>
@@ -74,5 +54,36 @@
       </ul>
     </footer>
     <script src="/app.js"></script>
+    <script>
+      const projects_list = document.querySelector(".projects");
+      main();
+
+      async function main() {
+        let res = await fetch("/projects.json");
+        let projects = await res.json();
+        renderProjects(projects);
+      }
+
+      function renderProjects(projects) {
+        let markup = "";
+        for (let [index, project] of projects.entries()) {
+          markup += projectMarkupGenerator(project, index);
+        }
+        projects_list.innerHTML = markup;
+      }
+
+      function projectMarkupGenerator({ name, date, description }, index) {
+        return `
+				<li>
+					<details class="project">
+						<summary>
+							<span class="project-title">${name}</span>
+							<time class="project-date" datetime="${date}">${date}</time>
+						</summary>
+          <p class="project-summary">${description}</p>
+					</details>
+				</li>`;
+      }
+    </script>
   </body>
 </html>
