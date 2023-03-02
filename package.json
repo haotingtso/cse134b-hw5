@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "dompurify": "^3.0.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && rsync -rv * dist --exclude ./dist"
   }
 }
