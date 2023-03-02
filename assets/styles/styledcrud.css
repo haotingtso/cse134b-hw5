@@ -36,7 +36,7 @@ html, body {
 	background-color: var(--bg-color);
 }
 
-header, main {
+header, main, dialog {
 	width: 75%;
 	max-width: 40rem;
 	margin: 0 auto;
