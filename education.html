@@ -42,71 +42,21 @@
   <body>
     <header>
       <h1>My Portfolio</h1>
-      <label>
-        <i id="hamburger" class="fa-solid fa-bars fa-lg"></i>
-        <input type="checkbox" />
-        <nav>
-          <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/project.html">Project</a></li>
-            <li><a href="/education.html">Education</a></li>
-            <li><a href="/contact.html">Contact Me</a></li>
-          </ul>
-        </nav>
-      </label>
+      <span id="hamburger">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </span>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/project.html">Project</a></li>
+          <li><a href="/education.html">Education</a></li>
+          <li><a href="/contact.html">Contact Me</a></li>
+        </ul>
+      </nav>
     </header>
     <main>
       <h2>Education</h2>
-      <section>
-        <div id="foothill" class="card">
-          <div class="card-front">
-            <picture>
-              <source
-                srcset="/assets/schools_logos/foothill.svg"
-                type="image/svg+xml"
-              />
-              <img
-                src="/assets/schools_logos/foothill.png"
-                alt="Foothill College"
-                width="40px"
-                height="45px"
-              />
-            </picture>
-            <h3>Foothill College</h3>
-          </div>
-          <div class="card-back">
-            <h3>Foothill College</h3>
-            <p>
-              I was studying <i>Computer Science</i> at Foothill College from
-              winter 2020 to spring 2021
-            </p>
-          </div>
-        </div>
-        <div id="ucsd" class="card">
-          <div class="card-front">
-            <picture>
-              <source
-                srcset="/assets/schools_logos/ucsd.svg"
-                type="image/svg+xml"
-              />
-              <img
-                src="/assets/schools_logos/ucsd.png"
-                alt="University of California, San Diego"
-                width="40px"
-                height="40px"
-              />
-            </picture>
-            <h3>University of California, San Diego</h3>
-          </div>
-          <div class="card-back">
-            <h3>UCSD</h3>
-            <p>
-              I am currently studying <i>Computer Science</i> at UCSD from fall
-              2021, and I expect to graduate in <strong>spring 2024</strong>
-            </p>
-          </div>
-        </div>
-      </section>
+      <section></section>
     </main>
     <footer>
       <ul>
@@ -115,6 +65,56 @@
         </li>
       </ul>
     </footer>
-    <script></script>
+    <script src="/app.js"></script>
+    <script>
+      let section = document.querySelector("section");
+      main();
+
+      async function main() {
+        window.flip = flip;
+        let res = await fetch("/schools.json");
+        let schools = await res.json();
+        renderSchools(schools);
+      }
+
+      function flip(index) {
+        document.querySelectorAll(".card")[index].classList.toggle("flip");
+      }
+
+      function renderSchools(schools) {
+        let markup = "";
+        for (let [index, school] of schools.entries()) {
+          markup += schoolMarkupGenerator(school, index);
+        }
+        section.innerHTML = markup;
+      }
+
+      function schoolMarkupGenerator(
+        { name, full_name, abbreviation, logo, description },
+        index
+      ) {
+        return `<div id=${name} class="card" onclick="flip(${index})">
+          <div class="card-front">
+            <picture>
+              <source
+                srcset="/assets/schools_logos/${name}.svg"
+                type="image/svg+xml"
+              />
+              <img
+                src="/assets/schools_logos/${name}.png"
+                alt=${full_name}
+                width=${logo.width}
+                height=${logo.height}
+              />
+            </picture>
+            <h3>${full_name}</h3>
+          </div>
+          <div class="card-back">
+            <h3>${abbreviation}</h3>
+            <p>${description}</p>
+          </div>
+        </div>`;
+      }
+    </script>
   </body>
 </html>

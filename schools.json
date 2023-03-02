@@ -1,0 +1,22 @@
+[
+  {
+    "name": "foothill",
+    "full_name": "Foothill College",
+    "abbreviation": "Foothill College",
+    "logo": {
+      "width": "40px",
+      "height": "45px"
+    },
+    "description": "I was studying <i>Computer Science</i> at Foothill College from winter 2020 to spring 2021"
+  },
+  {
+    "name": "ucsd",
+    "full_name": "University of California, San Diego",
+    "abbreviation": "UCSD",
+    "logo": {
+      "width": "40px",
+      "height": "40px"
+    },
+    "description": "I am currently studying <i>Computer Science</i> at UCSD from fall 2021, and I expect to graduate in <strong>spring 2024</strong>"
+  }
+]

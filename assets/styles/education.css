@@ -29,7 +29,7 @@ section {
 	cursor: pointer;
 }
 
-.card:active {
+.card.flip {
 	--rotate-y: 180deg;
 }
 
@@ -60,6 +60,10 @@ section {
 
 .card-back {
 	transform: rotateY(180deg);
+}
+
+.card-back h3 {
+	color: var(--color);
 }
 
 .card-back p {
