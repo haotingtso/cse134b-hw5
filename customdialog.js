@@ -100,8 +100,15 @@ export function showPostPrompt({
 }
 
 function openDialog(dialog) {
-  document.body.appendChild(dialog);
-  document.querySelector("dialog").showModal();
+  let existing_dialog = document.querySelector("dialog[open]");
+  if (existing_dialog) {
+    document.body.removeChild(existing_dialog);
+  }
+
+  setTimeout(() => {
+    document.body.appendChild(dialog);
+    document.querySelector("dialog").showModal();
+  }, 0);
 }
 
 function closeDialog() {

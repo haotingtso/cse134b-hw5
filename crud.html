@@ -35,10 +35,8 @@
   </head>
   <body>
     <h1>My Posts</h1>
-    <main>
-      <ul></ul>
-      <button type="button" id="add-btn">Add Post</button>
-    </main>
+    <main></main>
+    <button type="button" id="add-btn">Add Post</button>
 
     <template id="alert-template">
       <dialog>
@@ -59,7 +57,7 @@
 
     <template id="post-prompt-template">
       <dialog>
-        <form>
+        <form method="dialog">
           <div class="form-field">
             <label for="post-title">Title:</label>
             <input
@@ -91,8 +89,8 @@
             />
           </div>
           <div class="form-field">
-            <button type="button" onclick="">Cancel</button>
-            <button type="button" onclick="">Save</button>
+            <button type="button">Cancel</button>
+            <button type="button">Save</button>
           </div>
         </form>
       </dialog>
@@ -102,14 +100,13 @@
       import {
         customAlert,
         customConfirm,
-        customPrompt,
         showPostPrompt,
       } from "./customdialog.js";
 
       import posts, { addPost, editPost, deletePost } from "./blog.js";
 
       let add_btn = document.getElementById("add-btn");
-      let posts_list = document.querySelector("ul");
+      let main_element = document.querySelector("main");
 
       function main() {
         addEventListeners();
@@ -123,13 +120,21 @@
       }
 
       function addPostHandler(new_post) {
-        addPost(cleanPost(new_post));
-        renderPosts(posts);
+        let success = addPost(cleanPost(new_post));
+        if (success) {
+          renderPosts(posts);
+        } else {
+          customAlert("Please fill in all the fields");
+        }
       }
 
       function editPostHandler(index, new_post) {
-        editPost(index, cleanPost(new_post));
-        renderPosts(posts);
+        let success = editPost(index, cleanPost(new_post));
+        if (success) {
+          renderPosts(posts);
+        } else {
+          customAlert("Please Fill in Every Field!");
+        }
       }
 
       function deletePostHandler(index) {
@@ -142,10 +147,17 @@
       }
 
       function renderPosts(posts) {
-        posts_list.innerHTML = "";
-        for (let post of posts) {
-          posts_list.innerHTML += postMarkupGenerator(post);
+        if (posts.length === 0) {
+          main_element.innerHTML = "<p>No posts currently listed</p>";
+          return;
         }
+
+        let render_markup = "<ul>";
+        for (let post of posts) {
+          render_markup += postMarkupGenerator(post);
+        }
+        render_markup += "</ul>";
+        main_element.innerHTML = render_markup;
 
         const edit_btns = document.querySelectorAll(".edit-btn");
         const delete_btns = document.querySelectorAll(".delete-btn");
