@@ -31,35 +31,6 @@
     <br />
     <output></output>
 
-    <template id="alert-template">
-      <dialog>
-        <p id="alert-message"></p>
-        <button>Ok</button>
-      </dialog>
-    </template>
-
-    <template id="confirm-template">
-      <dialog>
-        <p id="confirm-message"></p>
-        <div class="buttons">
-          <button>Cancel</button>
-          <button>Ok</button>
-        </div>
-      </dialog>
-    </template>
-
-    <template id="prompt-template">
-      <dialog>
-        <div class="field">
-          <label for="prompt"></label>
-          <input type="text" id="prompt" name="prompt" />
-        </div>
-        <div class="buttons">
-          <button>Cancel</button>
-          <button>Ok</button>
-        </div>
-      </dialog>
-    </template>
     <script type="module">
       import {
         customAlert,
@@ -67,10 +38,10 @@
         customPrompt,
       } from "./customdialog.js";
 
-      let alert_btn = document.getElementById("alert-btn");
-      let confirm_btn = document.getElementById("confirm-btn");
-      let prompt_btn = document.getElementById("prompt-btn");
-      let output = document.querySelector("output");
+      const alert_btn = document.getElementById("alert-btn");
+      const confirm_btn = document.getElementById("confirm-btn");
+      const prompt_btn = document.getElementById("prompt-btn");
+      const output = document.querySelector("output");
 
       function main() {
         modifyEventListeners();
@@ -85,22 +56,18 @@
 
       function addEventListeners() {
         alert_btn.addEventListener("click", () => {
-          setOutput("");
-          setTimeout(() => {
-            window.alert("Alert pressed!");
-          }, 0);
+          clearOutput();
+          window.alert("Alert pressed!");
         });
 
         confirm_btn.addEventListener("click", () => {
-          setOutput("");
+          clearOutput();
           const onclick = isOk => setOutput(`Confirm result : ${isOk}`);
-          setTimeout(() => {
-            window.confirm("Can you confirm this?", onclick);
-          }, 0);
+          window.confirm("Can you confirm this?", onclick);
         });
 
         prompt_btn.addEventListener("click", () => {
-          setOutput("");
+          clearOutput();
 
           const onclick = message => {
             message = cleanUserInput(message);
@@ -111,9 +78,7 @@
             );
           };
 
-          setTimeout(() => {
-            window.prompt("What is your name?", onclick);
-          }, 0);
+          window.prompt("What is your name?", onclick);
         });
       }
 
@@ -124,6 +89,10 @@
       function setOutput(newContent) {
         output.innerHTML = newContent;
         output.style.border = newContent ? "10px double black" : "";
+      }
+
+      function clearOutput() {
+        clearOutput();
       }
 
       main();

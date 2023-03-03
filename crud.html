@@ -56,64 +56,6 @@
       <button type="button" id="add-btn">Add Post</button>
     </main>
 
-    <template id="alert-template">
-      <dialog>
-        <p id="alert-message"></p>
-        <button>Ok</button>
-      </dialog>
-    </template>
-
-    <template id="confirm-template">
-      <dialog>
-        <p id="confirm-message"></p>
-        <div class="buttons">
-          <button>Cancel</button>
-          <button>Ok</button>
-        </div>
-      </dialog>
-    </template>
-
-    <template id="post-prompt-template">
-      <dialog>
-        <form method="dialog">
-          <div class="form-field">
-            <label for="post-title">Title:</label>
-            <input
-              type="text"
-              id="post-title"
-              name="post-title"
-              value=""
-              required
-            />
-          </div>
-          <div class="form-field">
-            <label for="post-date">Date:</label>
-            <input
-              type="date"
-              id="post-date"
-              name="post-date"
-              value=""
-              required
-            />
-          </div>
-          <div class="form-field">
-            <label for="post-summary"></label>
-            <input
-              type="text"
-              id="post-summary"
-              name="post-summary"
-              value=""
-              required
-            />
-          </div>
-          <div class="form-field">
-            <button type="button">Cancel</button>
-            <button type="button">Save</button>
-          </div>
-        </form>
-      </dialog>
-    </template>
-
     <script type="module">
       import {
         customAlert,
@@ -135,24 +77,24 @@
         add_btn.addEventListener("click", () =>
           showPostPrompt({ onSave: addPostHandler })
         );
+
+        window.editNthPost = editPostHandler;
+        window.deleteNthPost = deletePostHandler;
       }
 
       function addPostHandler(new_post) {
         let success = addPost(cleanPost(new_post));
-        if (success) {
-          renderPosts(posts);
-        } else {
-          customAlert("Please fill in all the fields");
-        }
+        renderPosts(posts);
       }
 
-      function editPostHandler(index, new_post) {
-        let success = editPost(index, cleanPost(new_post));
-        if (success) {
-          renderPosts(posts);
-        } else {
-          customAlert("Please Fill in Every Field!");
-        }
+      function editPostHandler(index) {
+        showPostPrompt({
+          post: posts[index],
+          onSave: new_post => {
+            editPost(index, cleanPost(new_post));
+            renderPosts(posts);
+          },
+        });
       }
 
       function deletePostHandler(index) {
@@ -166,35 +108,19 @@
 
       function renderPosts(posts) {
         if (posts.length === 0) {
-          output.innerHTML = "<p>No posts currently listed</p>";
+          output.innerHTML = `<p id="no-posts">No posts currently listed</p>`;
           return;
         }
 
-        let render_markup = "<ul>";
-        for (let post of posts) {
-          render_markup += postMarkupGenerator(post);
+        let render_markup = `<ul class="posts">`;
+        for (let [index, post] of posts.entries()) {
+          render_markup += postMarkup(post, index);
         }
         render_markup += "</ul>";
         output.innerHTML = render_markup;
-
-        const edit_btns = document.querySelectorAll(".edit-btn");
-        const delete_btns = document.querySelectorAll(".delete-btn");
-
-        for (let [index, btn] of edit_btns.entries()) {
-          btn.addEventListener("click", () => {
-            showPostPrompt({
-              post: posts[index],
-              onSave: new_post => editPostHandler(index, new_post),
-            });
-          });
-        }
-
-        for (let [index, btn] of delete_btns.entries()) {
-          btn.addEventListener("click", () => deletePostHandler(index));
-        }
       }
 
-      function postMarkupGenerator({ title, date, summary }) {
+      function postMarkup({ title, date, summary }, index) {
         return `
 				<li>
 					<details>
@@ -202,8 +128,8 @@
 							<span class="post-title">${title}</span>
 							<time datetime="${date}">${date}</time>
 							<div class="buttons">
-								<button type="button" class="edit-btn">Edit</button>
-								<button type="button" class="delete-btn">Delete</button>
+								<button type="button" class="edit-btn" onclick="editNthPost(${index})">Edit</button>
+								<button type="button" class="delete-btn" onclick="deleteNthPost(${index})">Delete</button>
 							</div>
 						</summary>
 						<p class="post-summary">${summary}</p>
