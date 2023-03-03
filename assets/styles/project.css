@@ -52,3 +52,9 @@
 .project-summary {
 	margin-top: 1rem;
 }
+
+.project code {
+	color: orange;
+	font-weight: bold;
+	font-size: 1rem;
+}
