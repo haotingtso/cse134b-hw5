@@ -22,7 +22,6 @@
     <script src="/blog.js" type="module"></script>
     <script src="/customdialog.js" type="module"></script>
     <script src="/dompurify/dist/purify.js"></script>
-    <link rel="stylesheet" href="/assets/styles/dialogs.css" />
     <link rel="stylesheet" href="/assets/styles/styledcrud.css" />
     <link rel="stylesheet" href="/assets/styles/styledposts.css" />
     <link rel="stylesheet" href="/assets/styles/styleddialogs.css" />
@@ -176,19 +175,19 @@
 
       function postMarkupGenerator({ title, date, summary }) {
         return `
-					<li>
-						<details class="post">
-							<summary>
-								<span class="post-title">${title}</span>
-								<time class="post-date" datetime="${date}">${date}</time>
-								<div class="buttons">
-									<button type="button" class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
-									<button type="button" class="delete-btn"><i class="fa-solid fa-trash-can"></i></button>
-								</div>
-							</summary>
-							<p class="post-summary">${summary}</p>
-						</details>
-					</li>
+          <li>
+            <details class="post">
+              <summary>
+                <span class="post-title">${title}</span>
+                <time class="post-date" datetime="${date}">${date}</time>
+                <div class="buttons">
+                  <button type="button" class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button type="button" class="delete-btn"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+              </summary>
+              <p class="post-summary">${summary}</p>
+            </details>
+          </li>
          `;
       }
 

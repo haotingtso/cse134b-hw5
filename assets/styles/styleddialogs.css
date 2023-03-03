@@ -38,8 +38,8 @@ textarea {
 }
 
 dialog .buttons {
-	max-width: 100%;
-	margin-left: auto;
+	width: 100%;
+	justify-content: center;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -62,4 +62,9 @@ dialog button:hover {
 	cursor: pointer;
 	color: var(--secondary);
 	background-color: var(--main);
+}
+
+#confirm-message {
+	margin-bottom: 2rem;
+	text-align: center;
 }
