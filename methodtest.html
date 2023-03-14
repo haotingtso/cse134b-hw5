@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-7GP5R969RT"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-7GP5R969RT");
+    </script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <meta name="description" content="Hao-Ting Tso's Portfolio" />
+    <link rel="stylesheet" href="/assets/styles/style.css" />
+    <link rel="stylesheet" href="/assets/styles/methodtest.css" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Method Test</h1>
+      <span id="hamburger">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </span>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/project.html">Project</a></li>
+          <li><a href="/education.html">Education</a></li>
+          <li><a href="/contact.html">Contact Me</a></li>
+          <li><a href="/methodtest.html">Method Test</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <form>
+        <div class="input-field">
+          <label for="record-id">Record ID</label>
+          <input
+            type="number"
+            name="record-id"
+            id="record-id"
+            value="10"
+            readonly
+          />
+        </div>
+        <input
+          type="text"
+          id="article-name"
+          name="article-name"
+          placeholder="Article Name"
+          required
+        />
+        <textarea
+          id="article-body"
+          name="article-body"
+          rows="4"
+          cols="50"
+          placeholder="Your Message"
+          required
+        ></textarea>
+        <input type="hidden" id="current-time" name="current-time" />
+        <select name="methods" id="methods">
+          <option value="GET">GET</option>
+          <option value="POST">POST</option>
+          <option value="PUT">PUT</option>
+          <option value="DELETE">DELETE</option>
+        </select>
+        <button id="submit-btn">Submit</button>
+      </form>
+      <output></output>
+    </main>
+    <footer>
+      <ul>
+        <li>
+          <a href="#">Go to Top</a>
+        </li>
+      </ul>
+    </footer>
+    <script type="module">
+      const UISelector = {
+        form: "form",
+        output: "output",
+        submit_btn: "#submit-btn",
+        current_time_input: "#current-time",
+      };
+      const form = document.querySelector(UISelector.form);
+      const output = document.querySelector(UISelector.output);
+
+      function main() {
+        addEventListeners();
+        showOutput();
+      }
+
+      function showOutput(json) {
+        if (json) {
+          output.textContent = JSON.stringify(json, undefined, 2);
+        } else {
+          output.textContent = "No Output Yet";
+        }
+      }
+
+      function addEventListeners() {
+        form.addEventListener("submit", formSubmitHandler);
+      }
+
+      async function formSubmitHandler(e) {
+        e.preventDefault();
+
+        let method = form.methods.value;
+        let end_point = `https://httpbin.org/${method.toLowerCase()}`;
+        let query = queryBuilder();
+
+        let url = urlBuilder(end_point, method, query);
+        let options = optionsBuilder(method, query);
+
+        let res = await fetch(url, options);
+        let json = await res.json();
+        showOutput(json);
+      }
+
+      function queryBuilder() {
+        form["current-time"].value = new Date();
+        let data = new FormData(form);
+        data.delete("methods");
+        return new URLSearchParams(data).toString();
+      }
+
+      function urlBuilder(end_point, method, query) {
+        if (method === "POST" || method === "PUT") {
+          return end_point;
+        }
+
+        return end_point + "?" + query;
+      }
+
+      function optionsBuilder(method, query) {
+        let options = {
+          method,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-Sent-By": "javascript",
+          },
+        };
+        if (method === "POST" || method === "PUT") {
+          options.body = query;
+        }
+        return options;
+      }
+
+      main();
+    </script>
+  </body>
+</html>
