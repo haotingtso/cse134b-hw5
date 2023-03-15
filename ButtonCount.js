@@ -4,6 +4,7 @@ class ButtonCount extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.times_clicked = 0;
     this.update();
+    this.addEventListener("click", this.addOne);
   }
 
   addOne() {
