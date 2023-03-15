@@ -52,6 +52,7 @@
           <li><a href="/education.html">Education</a></li>
           <li><a href="/contact.html">Contact Me</a></li>
           <li><a href="/methodtest.html">Method Test</a></li>
+          <li><a href="/webcomponent.html">Web Component</a></li>
         </ul>
       </nav>
     </header>
@@ -83,7 +84,7 @@
           required
         ></textarea>
         <input type="hidden" id="current-time" name="current-time" />
-        <select name="methods" id="methods">
+        <select name="method" id="method">
           <option value="GET">GET</option>
           <option value="POST">POST</option>
           <option value="PUT">PUT</option>
@@ -130,7 +131,7 @@
       async function formSubmitHandler(e) {
         e.preventDefault();
 
-        let method = form.methods.value;
+        let method = form.method.value;
         let end_point = `https://httpbin.org/${method.toLowerCase()}`;
         let query = queryBuilder();
 
@@ -145,7 +146,6 @@
       function queryBuilder() {
         form["current-time"].value = new Date();
         let data = new FormData(form);
-        data.delete("methods");
         return new URLSearchParams(data).toString();
       }
 
@@ -165,9 +165,11 @@
             "X-Sent-By": "javascript",
           },
         };
+
         if (method === "POST" || method === "PUT") {
           options.body = query;
         }
+
         return options;
       }
 

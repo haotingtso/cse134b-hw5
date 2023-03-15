@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/styles/style.css" />
+    <script type="module" src="/ButtonCount.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Web Component</h1>
+      <span id="hamburger">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </span>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/project.html">Project</a></li>
+          <li><a href="/education.html">Education</a></li>
+          <li><a href="/contact.html">Contact Me</a></li>
+          <li><a href="/methodtest.html">Method Test</a></li>
+          <li><a href="/webcomponent.html">Web Component</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <button-count></button-count>
+    </main>
+  </body>
+  <script>
+    const button_count = document.querySelector("button-count");
+    button_count.addEventListener("click", () => {
+      button_count.addOne();
+    });
+  </script>
+</html>
